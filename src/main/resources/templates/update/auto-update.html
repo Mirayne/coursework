@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/auto-update}" th:object="${auto}" method="post">
+        <table>
+            <tr>
+                <td><label for="id">ID: </label></td>
+                <td><input type="number" th:field="*{id}" placeholder="id" id="id" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="maker">Производитель: </label></td>
+                <td><input type="text" th:field="*{maker}" id="maker" placeholder="Производитель"></td>
+            </tr>
+            <tr>
+                <td><label for="model">Модель: </label></td>
+                <td><input type="text" th:field="*{model}" id="model" placeholder="Модель"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Обновить данные</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

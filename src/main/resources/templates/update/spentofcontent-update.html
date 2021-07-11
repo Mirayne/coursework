@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/spentofcontent-update}" th:object="${spent}" method="post">
+        <table>
+            <tr>
+                <td><label for="unitID">ID: </label></td>
+                <td><input  id="unitID" th:field="*{unitID}" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="resultID">ID Результата: </label></td>
+                <td><input  id="resultID" th:field="*{resultID}" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="spentThing">Расходник: </label></td>
+                <td id="spentThing">
+                    <select th:field="*{spentThing}">
+                        <option th:each="co : ${contentmap}" th:value="${co.key}" th:text="${co.value}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="spentCount">Количество: </label></td>
+                <td><input type="text" th:field="*{spentCount}" id="spentCount" placeholder="Кол-во"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Обновить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

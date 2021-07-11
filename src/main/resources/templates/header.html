@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+</head>
+<body>
+<div th:fragment="menu">
+    <ul id="menu">
+        <div sec:authorize="hasAuthority('admin')">
+            <li><a href="/lists/user-list">Пользователи</a></li>
+        </div>
+        <li><a href="/lists/callings-list">Вызовы</a></li>
+        <li><a href="/lists/callingresults-list">Результаты вызовов</a></li>
+        <li><a href="/lists/medbrigade-list">Медицинские бригады</a></li>
+        <li><a>Справочники&#709</a>
+            <ul>
+                <li><a href="/lists/autos-list">Автомобили</a></li>
+                <li><a href="/lists/contentofkit-list">Содержимое комплектов</a></li>
+                <li><a href="/lists/regions-list">Регионы</a></li>
+                <li><a href="/lists/specialties-list">Специальности</a></li>
+                <li><a href="/lists/status-list">Статусы</a></li>
+            </ul>
+        </li>
+        <li><a>Работники &#709</a>
+            <ul>
+                <li><a href="/lists/drivers-list">Водители</a></li>
+                <li><a href="/lists/medicals-list">Врачи</a></li>
+            </ul>
+        </li>
+        <li><a href="/lists/medkits-list">Комплекты</a></li>
+        <li><a href="/lists/contentvendors-list">Поставщики</a></li>
+        <li><a>Отчеты &#709</a>
+            <ul>
+                <li><a>О ложных вызовах ></a>
+                    <ul>
+                        <li><a href="/reports/falsecallings/1">Январь</a></li>
+                        <li><a href="/reports/falsecallings/2">Февраль</a></li>
+                        <li><a href="/reports/falsecallings/3">Март</a></li>
+                        <li><a href="/reports/falsecallings/4">Апрель</a></li>
+                        <li><a href="/reports/falsecallings/5">Май</a></li>
+                        <li><a href="/reports/falsecallings/6">Июнь</a></li>
+                        <li><a href="/reports/falsecallings/7">Июль</a></li>
+                        <li><a href="/reports/falsecallings/8">Август</a></li>
+                        <li><a href="/reports/falsecallings/9">Сентябрь</a></li>
+                        <li><a href="/reports/falsecallings/10">Октябрь</a></li>
+                        <li><a href="/reports/falsecallings/11">Ноябрь</a></li>
+                        <li><a href="/reports/falsecallings/12">Декабрь</a></li>
+                    </ul>
+                </li>
+                <li><a>О расходах ></a>
+                    <ul>
+                        <li><a href="/reports/spentcost/1">Январь</a></li>
+                        <li><a href="/reports/spentcost/2">Февраль</a></li>
+                        <li><a href="/reports/spentcost/3">Март</a></li>
+                        <li><a href="/reports/spentcost/4">Апрель</a></li>
+                        <li><a href="/reports/spentcost/5">Май</a></li>
+                        <li><a href="/reports/spentcost/6">Июнь</a></li>
+                        <li><a href="/reports/spentcost/7">Июль</a></li>
+                        <li><a href="/reports/spentcost/8">Август</a></li>
+                        <li><a href="/reports/spentcost/9">Сентябрь</a></li>
+                        <li><a href="/reports/spentcost/10">Октябрь</a></li>
+                        <li><a href="/reports/spentcost/11">Ноябрь</a></li>
+                        <li><a href="/reports/spentcost/12">Декабрь</a></li>
+                    </ul>
+                </li>
+                <li><a>О скорости реакции ></a>
+                    <ul>
+                        <li><a href="/reports/avgtime/1">Январь</a></li>
+                        <li><a href="/reports/avgtime/2">Февраль</a></li>
+                        <li><a href="/reports/avgtime/3">Март</a></li>
+                        <li><a href="/reports/avgtime/4">Апрель</a></li>
+                        <li><a href="/reports/avgtime/5">Май</a></li>
+                        <li><a href="/reports/avgtime/6">Июнь</a></li>
+                        <li><a href="/reports/avgtime/7">Июль</a></li>
+                        <li><a href="/reports/avgtime/8">Август</a></li>
+                        <li><a href="/reports/avgtime/9">Сентябрь</a></li>
+                        <li><a href="/reports/avgtime/10">Октябрь</a></li>
+                        <li><a href="/reports/avgtime/11">Ноябрь</a></li>
+                        <li><a href="/reports/avgtime/12">Декабрь</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Отчет о скорости реакции</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>Номер бригады</th>
+        <th>Средняя скорость реакции</th>
+        </thead>
+        <tbody th:each="avg : ${avgtimemap}">
+        <td th:text="${avg.key}"></td>
+        <td th:text="${avg.value}"></td>
+        </tbody>
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

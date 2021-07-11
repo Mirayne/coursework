@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Отчет о ложных вызовах</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>ID вызова</th>
+        <th>Дата</th>
+        </thead>
+        <tbody th:each="call : ${falsecallingsmap}">
+            <td th:text="${call.key}"></td>
+            <td th:text="${call.value}"></td>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>Всего за месяц: </td>
+            <td th:text="${falsecallingsmap.size} + ' ложных вызовов'"></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

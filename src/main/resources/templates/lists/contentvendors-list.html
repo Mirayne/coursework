@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+
+<body>
+
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Список поставщиков</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>ID</th>
+        <th>Название организации</th>
+        <th colspan="2" align="center">Функции</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="cvl : ${contentVendorsList}">
+            <td th:text="${cvl.contentVendorId}"></td>
+            <td th:text="${cvl.contentVendorName}"></td>
+            <td><a th:href="@{/lists/contentvendors-delete/{contentVendorId}(contentVendorId=${cvl.contentVendorId})}">
+                <button>Удалить</button>
+            </a></td>
+            <td><a th:href="@{/update/contentvendors-update/{contentVendorId}(contentVendorId=${cvl.contentVendorId})}">
+                <button>Изменить</button>
+            </a></td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+        <form action="#" th:action="@{/lists/contentvendors-create}" th:object="${newVendor}" method="post">
+            <tr>
+                <td><input type="text" placeholder="contentVendorId" readonly hidden></td>
+                <td align="center"><input type="text" th:field="*{contentVendorName}" id="contentVendorName"
+                                          placeholder="Наименование"></td>
+                <td colspan="2" align="center">
+                    <button type="submit">Добавить</button>
+                </td>
+            </tr>
+        </form>
+        </tfoot>
+
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+
+<body>
+
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Список врачей</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>id</th>
+        <th>ФИО</th>
+        <th>Специальность</th>
+        <th colspan="2" align="center">Функции</th>
+        </thead>
+        <tbody>
+        <tr th:each="med : ${medicals}">
+            <td th:text="${med.medicId}"></td>
+            <td th:text="${med.medicName}"></td>
+            <td th:text="${specialties.get(med.specialtyDtoID)}"></td>
+            <td><a th:href="@{/lists/medicals-delete/{id}(id=${med.medicId})}">
+                <button>Удалить</button>
+            </a></td>
+            <td><a th:href="@{/update/medicals-update/{id}(id=${med.medicId})}">
+                <button>Изменить</button>
+            </a></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <form action="#" th:action="@{/lists/medicals-create}" th:object="${newMedic}" method="post">
+            <tr>
+                <td><input type="text" placeholder="id" readonly></td>
+                <td><input type="text" th:field="*{medicName}" id="name" placeholder="ФИО"></td>
+                <td>
+                    <select th:field="*{specialtyDtoID}">
+                        <option th:each="spec : ${specialtiesList}" th:value="${spec.specialtyId}"
+                                th:text="${spec.specialtyTitle}"></option>
+                    </select>
+                </td>
+                <td colspan="2" align="center">
+                    <button type="submit">Добавить</button>
+                </td>
+            </tr>
+        </form>
+        </tfoot>
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

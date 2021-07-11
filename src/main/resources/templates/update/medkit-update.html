@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/medkit-update}" th:object="${medkit}" method="post">
+        <table>
+            <tr>
+                <td><label for="id">ID: </label></td>
+                <td><input type="number" th:field="*{medkitId}" placeholder="ID" id="id" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="numberOfMedkit">Номер комплекта: </label></td>
+                <td><input type="number" th:field="*{numberOfMedkit}" id="numberOfMedkit" placeholder="Номер"></td>
+            </tr>
+            <tr>
+                <td><label for="contentOfKitDtoID">Содержимое: </label></td>
+                <td><select th:field="*{contentOfKitDtoID}" id="contentOfKitDtoID">
+                    <option selected="*{contentOfKitDtoID}" th:each="ct : ${contentList}" th:value="${ct.contentId}"
+                            th:text="${ct.contentTitle}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="contentCount">Количество содержимого: </label></td>
+                <td><input type="number" th:field="*{contentCount}" id="contentCount" placeholder="Количество"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Обновить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

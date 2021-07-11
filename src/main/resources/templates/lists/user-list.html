@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Список пользователей</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>id</th>
+        <th>Имя</th>
+        <th>Логин</th>
+        <th>email</th>
+        <th>Роль</th>
+        <th>Пароль</th>
+        <th colspan="2" align="center">Функции</th>
+        </thead>
+        <tbody>
+        <tr th:each="us : ${users}">
+            <td th:text="${us.id}"></td>
+            <td th:text="${us.name}"></td>
+            <td th:text="${us.login}"></td>
+            <td th:text="${us.email}"></td>
+            <td th:text="${us.role}"></td>
+            <td>******</td>
+            <td><a th:href="@{/lists/user-delete/{id}(id=${us.id})}">
+                <button>Удалить</button>
+            </a></td>
+            <td><a th:href="@{/update/user-update/{id}(id=${us.id})}">
+                <button>Изменить</button>
+            </a></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <form action="#" th:action="@{/lists/user-create}" th:object="${usersTable}" method="post">
+            <tr>
+                <td><input type="text" placeholder="id" readonly hidden></td>
+                <td><input type="text" th:field="*{name}" id="name" placeholder="Имя"></td>
+                <td><input type="text" th:field="*{login}" id="login" placeholder="Логин"></td>
+                <td><input type="text" th:field="*{email}" id="email" placeholder="Email"></td>
+                <td>
+                    <select th:field="*{role}">
+                        <option th:each="rol : ${roles}" th:value="${rol}"
+                                th:text="${rol}"></option>
+                    </select>
+                </td>
+                <td><input type="password" th:field="*{password}" id="password" placeholder="Пароль"></td>
+                <td colspan="2" align="center">
+                    <button type="submit">Добавить</button>
+                </td>
+            </tr>
+        </form>
+        </tfoot>
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

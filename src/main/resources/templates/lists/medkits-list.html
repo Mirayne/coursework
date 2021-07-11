@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+
+<body>
+
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Список мед. комплектов</h1>
+<div id="site-body">
+    <table id="site-table">
+    <thead>
+    <th>ID</th>
+    <th>Номер комплекта</th>
+    <th>Содержимое</th>
+    <th>Количество содержимого</th>
+    <th colspan="2" align="center">Функции</th>
+    </thead>
+
+    <tbody>
+    <tr th:each="med : ${medkits}">
+        <td th:text="${med.medkitId}"></td>
+        <td th:text="${med.numberOfMedkit}"></td>
+        <td th:text="${contentMap.get(med.contentOfKitDtoID)}"></td>
+        <td th:text="${med.contentCount}"></td>
+        <td><a th:href="@{/lists/medkit-delete/{id}(id=${med.medkitId})}"><button>Удалить</button></a></td>
+        <td><a th:href="@{/update/medkit-update/{id}(id=${med.medkitId})}"><button>Изменить</button></a></td>
+    </tr>
+    </tbody>
+
+    <tfoot>
+    <form action="#" th:action="@{/lists/medkit-create}" th:object="${newMedkit}" method="post">
+        <tr>
+            <td></td>
+            <td align="center"><input type="number" th:field="*{numberOfMedkit}" placeholder="Номер комплекта"></td>
+            <td align="center">
+                <select th:field="*{contentOfKitDtoID}">
+                    <option th:each="ct : ${contentList}" th:value="${ct.contentId}" th:text="${ct.contentTitle}"></option>
+                </select>
+            </td>
+            <td align="center"><input type="number" th:field="*{contentCount}" placeholder="Кол-во"></td>
+            <td colspan="2" align="center"><button type="submit">Добавить</button> </td>
+        </tr>
+    </form>
+    </tfoot>
+</table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+<body>
+
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Список водителей</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>ID</th>
+        <th>Имя водителя</th>
+        <th>Категория</th>
+        <th>Опыт</th>
+        <th>Автомобиль</th>
+        <th colspan="2" align="center">Функции</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="dr : ${drivers}">
+            <td th:text="${dr.driverId}"></td>
+            <td th:text="${dr.nameOfDriver}"></td>
+            <td th:text="${dr.categoryOfDriver}"></td>
+            <td th:text="${dr.experienceOfDriver}"></td>
+            <td th:text="${dr.autoDtoID}"></td>
+            <td><a th:href="@{/lists/driver-delete/{id}(id=${dr.driverId})}">
+                <button>Удалить</button>
+            </a></td>
+            <td><a th:href="@{/update/driver-update/{id}(id=${dr.driverId})}">
+                <button>Изменить</button>
+            </a></td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+        <form action="#" th:action="@{/lists/driver-create}" th:object="${newDriver}" method="post">
+            <tr>
+                <td></td>
+                <td align="center"><input type="text" th:field="*{nameOfDriver}" id="maker" placeholder="ФИО водителя">
+                </td>
+                <td align="center"><input type="text" th:field="*{categoryOfDriver}" id="categoryOfDriver"
+                                          placeholder="Категория" maxlength="1"></td>
+                <td align="center"><input type="number" th:field="*{experienceOfDriver}" id="experienceOfDriver"
+                                          placeholder="Опыт вождения" maxlength="2"></td>
+                <td align="center">
+                    <select th:field="*{autoDtoID}">
+                        <option th:each="au : ${autos}" th:value="${au.id}" th:text="${au.id}"></option>
+                    </select>
+                </td>
+                <td colspan="2" align="center">
+                    <button type="submit">Добавить</button>
+                </td>
+            </tr>
+        </form>
+        </tfoot>
+
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

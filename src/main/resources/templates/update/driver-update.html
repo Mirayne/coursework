@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/driver-update}" th:object="${driver}" method="post">
+        <table>
+            <tr>
+                <td><label for="driverId">ID: </label></td>
+                <td><input type="number" th:field="*{driverId}" placeholder="driverId" id="driverId" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="nameOfDriver">Производитель: </label></td>
+                <td><input type="text" th:field="*{nameOfDriver}" id="nameOfDriver" placeholder="Имя водителя"></td>
+            </tr>
+            <tr>
+                <td><label for="categoryOfDriver">Категория водителя: </label></td>
+                <td><input type="text" th:field="*{categoryOfDriver}" id="categoryOfDriver"
+                           placeholder="Категория водителя"></td>
+            </tr>
+            <tr>
+                <td><label for="experienceOfDriver">Опыт вождения: </label></td>
+                <td><input type="text" th:field="*{experienceOfDriver}" id="experienceOfDriver"
+                           placeholder="Опыт вождения"></td>
+            </tr>
+            <tr>
+                <td><label for="autoDtoID">Автомобиль: </label></td>
+                <td><input type="text" th:field="*{autoDtoID}" id="autoDtoID" placeholder="Автомобиль"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Обновить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+.header {
+    flex: 0 0 auto;
+}
+
+.content {
+    margin-top: 20px;
+    align-self: center;
+    flex: 1 0 auto;
+}
+
+.content table {
+    border: 1;
+}
+
+.footer {
+    flex: 0 0 auto;
+    background: #4FA833;
+}
+
+#site-body {
+    height:85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 50%;
+}
+
+#site-footer {
+    background: #4FA833;
+    height: 5%;
+    width: 100%;
+}
+
+#site-header {
+    width: 100%;
+    height: 10%;
+}

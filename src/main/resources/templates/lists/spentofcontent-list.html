@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+
+<body>
+
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Затраты на выезде</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>Наименование расходника</th>
+        <th>Затраченное кол-во</th>
+        <th colspan="2" align="center">Функции</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="sp : ${spentofcontent}">
+            <td th:text="${sp.unitID}" hidden></td>
+            <td th:text="${sp.resultID}" hidden></td>
+            <td th:text="${contentmap.get(sp.spentThing)}"></td>
+            <td th:text="${sp.spentCount}"></td>
+            <td><a th:href="@{/lists/spentofcontent-delete/{id}(id=${sp.unitID})}">
+                <button>Удалить</button>
+            </a></td>
+            <td><a th:href="@{/update/spentofcontent-update/{id}(id=${sp.unitID})}">
+                <button>Изменить</button>
+            </a></td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+        <form action="#" th:action="@{/lists/spentofcontent-create}" th:object="${newContentSpent}" method="post">
+            <tr>
+                <td align="center" hidden><input type="text" th:field="*{resultID}" value="${resultID}" id="resultID" placeholder="ID Результата" readonly>
+                </td>
+                <td align="center">
+                    <select th:field="*{spentThing}">
+                        <option th:each="co : ${contentmap}" th:value="${co.key}" th:text="${co.value}"></option>
+                    </select>
+                </td>
+                <td align="center"><input type="number" th:field="*{spentCount}" id="spentCount" placeholder="Кол-во затрат"></td>
+                <td colspan="2" align="center"><button type="submit">Добавить</button> </td>
+            </tr>
+        </form>
+        </tfoot>
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

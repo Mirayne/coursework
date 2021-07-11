@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+<body>
+
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Список регионов</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>ID</th>
+        <th>Начало региона</th>
+        <th>Конец региона</th>
+        <th colspan="2" align="center">Функции</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="reg : ${regions}">
+            <td th:text="${reg.regionId}"></td>
+            <td th:text="${reg.regionBeginAddress}"></td>
+            <td th:text="${reg.regionEndAddress}"></td>
+            <td><a th:href="@{/lists/region-delete/{id}(id=${reg.regionId})}">
+                <button>Удалить</button>
+            </a></td>
+            <td><a th:href="@{/update/region-update/{id}(id=${reg.regionId})}">
+                <button>Изменить</button>
+            </a></td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+        <form action="#" th:action="@{/lists/region-create}" th:object="${newRegion}" method="post">
+            <tr>
+                <td></td>
+                <td align="center"><input type="text" th:field="*{regionBeginAddress}" placeholder="Начало региона">
+                </td>
+                <td align="center"><input type="text" th:field="*{regionEndAddress}" placeholder="Конец региона"></td>
+                <td colspan="2" align="center">
+                    <button type="submit">Добавить</button>
+                </td>
+            </tr>
+        </form>
+        </tfoot>
+
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

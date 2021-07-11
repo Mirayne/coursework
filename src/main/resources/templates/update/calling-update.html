@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/calling-update}" th:object="${calling}" method="post">
+        <table>
+            <tr>
+                <td><label for="id">ID: </label></td>
+                <td><input type="number" th:field="*{id}" placeholder="id" id="id" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="address">Адрес: </label></td>
+                <td><input type="text" th:field="*{address}" id="address" placeholder="Адрес"></td>
+            </tr>
+            <tr>
+                <td><label for="nameOfCaller">ФИО вызвавшего: </label></td>
+                <td><input type="text" th:field="*{nameOfCaller}" id="nameOfCaller" placeholder="ФИО"></td>
+            </tr>
+            <tr>
+                <td><label for="medBrigadeDTO">Номер бригады: </label></td>
+                <td><select th:field="*{medBrigadeDtoID}" id="medBrigadeDTO">
+                    <option selected="*{medBrigadeDtoID}" th:each="br : ${brigades}" th:value="${br.id}"
+                            th:text="${br.id}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="status">Статус: </label></td>
+                <td><select th:field="*{statusDtoID}" id="status">
+                    <option selected="*{statusDtoID}" th:each="st : ${statuses}" th:value="${st.statusId}"
+                            th:text="${st.statusName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="callingDateTime">Адрес: </label></td>
+                <td><input type="datetime-local" step="1" th:field="*{callingDateTime}" id="callingDateTime" placeholder="Дата вызова"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Обновить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

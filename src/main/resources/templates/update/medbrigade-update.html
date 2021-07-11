@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/medbrigade-update}" th:object="${brigade}" method="post">
+        <table>
+            <tr>
+                <td><label for="id">ID: </label></td>
+                <td><input type="number" th:field="*{id}" placeholder="id" id="id" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="driver">Водитель: </label></td>
+                <td><select th:field="*{driversDtoID}" id="driver">
+                    <option selected="*{driversDtoID}" th:each="dr : ${drivers}" th:value="${dr.driverId}"
+                            th:text="${dr.nameOfDriver}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="firstMedicalsDtoID">Первый врач: </label></td>
+                <td><select th:field="*{firstMedicalsDtoID}" id="firstMedicalsDtoID">
+                    <option selected="*{firstMedicalsDtoID}" th:each="med : ${medicals}" th:value="${med.medicId}"
+                            th:text="${med.medicName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="secondMedicalsDtoID">Второй врач: </label></td>
+                <td><select th:field="*{secondMedicalsDtoID}" id="secondMedicalsDtoID">
+                    <option selected="*{secondMedicalsDtoID}" th:each="med : ${medicals}" th:value="${med.medicId}"
+                            th:text="${med.medicName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="thirdMedicalsDtoID">Третий врач: </label></td>
+                <td><select th:field="*{thirdMedicalsDtoID}" id="thirdMedicalsDtoID">
+                    <option selected="*{thirdMedicalsDtoID}" th:each="med : ${medicals}" th:value="${med.medicId}"
+                            th:text="${med.medicName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="medkitDtoID">Мед. комплект: </label></td>
+                <td><select th:field="*{medkitDtoID}" id="medkitDtoID">
+                    <option selected="*{medkitDtoID}" th:each="medkit : ${medkits}" th:value="${medkit}"
+                            th:text="${medkit}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="regionDtoID">Регион: </label></td>
+                <td><select th:field="*{regionDtoID}" id="regionDtoID">
+                    <option selected="*{regionDtoID}" th:each="region : ${regions}" th:value="${region.regionId}"
+                            th:text="${region.regionId}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button type="submit">Обновить данные</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

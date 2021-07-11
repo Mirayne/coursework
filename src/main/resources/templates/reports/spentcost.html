@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:text-color="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Отчет о затратах</h1>
+<div id="site-body">
+    <table id="site-table">
+        <thead>
+        <th>Название расходника</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+        </thead>
+        <tbody th:each="spent : ${spentofcontent}">
+            <td th:text="${spent.contentTitle}"></td>
+            <td th:text="${spent.amount}"></td>
+            <td th:text="${spent.spentCost} + ' руб.'"></td>
+        </tbody>
+        <tfoot>
+        <tr hidden></tr>
+        <tr><td>Всего истрачено:</td>
+            <td th:text="${sumspent} + ' руб.'" colspan="2"></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

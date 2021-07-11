@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/medicals-update}" th:object="${medical}" method="post">
+        <table>
+            <tr>
+                <td><label for="medicId">ID: </label></td>
+                <td><input type="number" th:field="*{medicId}" placeholder="ID" id="medicId" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="medicName">ФИО врача: </label></td>
+                <td><input type="text" th:field="*{medicName}" id="medicName" placeholder="ФИО врача"></td>
+            </tr>
+            <tr>
+                <td><label for="specialtyDtoID">Специальность: </label></td>
+                <td><select th:field="*{specialtyDtoID}" id="specialtyDtoID">
+                    <option selected="*{specialtyDtoID}" th:each="sp : ${specialtiesList}" th:value="${sp.specialtyId}"
+                            th:text="${sp.specialtyTitle}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Обновить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

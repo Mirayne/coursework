@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/body-table.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<h1 align="center">Список мед. бригад</h1>
+<div>
+    <table id="site-table" align="center" width="75%">
+        <thead>
+        <tr>
+            <td>#</td>
+            <td>Имя водителя</td>
+            <td>Имя первого врача</td>
+            <td>Имя второго врача</td>
+            <td>Имя третьего врача</td>
+            <td>Номер комплекта</td>
+            <td>Регион</td>
+            <th colspan="2" align="center">Функции</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="li : ${medBrigadeList}">
+            <td th:text="${li.id}"></td>
+            <td th:text="${driversMap.get(li.driversDtoID)}"></td>
+            <td th:text="${medicalsList.get(li.firstMedicalsDtoID-1).getMedicName()}"></td>
+            <td th:text="${medicalsList.get(li.secondMedicalsDtoID-1).getMedicName()}"></td>
+            <td th:text="${medicalsList.get(li.thirdMedicalsDtoID-1).getMedicName()}"></td>
+            <td th:text="${li.medkitDtoID}"></td>
+            <td th:text="${li.regionDtoID}"></td>
+            <td><a th:href="@{/lists/medbrigade-delete/{id}(id=${li.id})}">
+                <button>Удалить</button>
+            </a></td>
+            <td><a th:href="@{/update/medbrigade-update/{id}(id=${li.id})}">
+                <button>Изменить</button>
+            </a></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <form action="#" th:action="@{/lists/medbrigade-create}" th:object="${newBrigade}" method="post">
+            <tr>
+                <td></td>
+                <td>
+                    <select th:field="*{driversDtoID}">
+                        <option th:each="dr : ${driversList}" th:value="${dr.driverId}"
+                                th:text="${dr.nameOfDriver}"></option>
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{firstMedicalsDtoID}">
+                        <option th:each="medic : ${medicalsList}" th:value="${medic.medicId}"
+                                th:text="${medic.medicName}"></option>
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{secondMedicalsDtoID}">
+                        <option th:each="medic : ${medicalsList}" th:value="${medic.medicId}"
+                                th:text="${medic.medicName}"></option>
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{thirdMedicalsDtoID}">
+                        <option th:each="medic : ${medicalsList}" th:value="${medic.medicId}"
+                                th:text="${medic.medicName}"></option>
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{medkitDtoID}">
+                        <option th:each="medkit : ${medkitsSet}" th:value="${medkit}" th:text="${medkit}"></option>
+                    </select>
+                </td>
+                <td>
+                    <select th:field="*{regionDtoID}">
+                        <option th:each="region : ${regionsList}" th:value="${region.regionId}"
+                                th:text="${region.regionId}"></option>
+                    </select>
+                </td>
+                <td colspan="2" align="center">
+                    <button type="submit">Добавить</button>
+                </td>
+            </tr>
+        </form>
+        </tfoot>
+    </table>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

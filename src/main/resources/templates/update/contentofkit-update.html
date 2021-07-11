@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/contentofkit-update}" th:object="${cok}" method="post">
+        <table>
+            <tr>
+                <td><label for="contentId">ID: </label></td>
+                <td><input type="number" th:field="*{contentId}" placeholder="ID" id="contentId" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="drug">Является лекарством: </label></td>
+                <td><select th:field="*{drug}" id="drug">
+                    <option th:value="true" th:text="Да"></option>
+                    <option th:value="false" th:text="Нет"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="contentTitle">Наименование: </label></td>
+                <td><input type="text" th:field="*{contentTitle}" id="contentTitle" placeholder="Наименование"></td>
+            </tr>
+            <tr>
+                <td><label for="contentVendorsDtoID">Поставщик: </label></td>
+                <td><select th:field="*{contentVendorsDtoID}" id="contentVendorsDtoID">
+                    <option selected="*{contentVendorsDtoID}" th:each="cv : ${vendors}" th:value="${cv.contentVendorId}"
+                            th:text="${cv.contentVendorName}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="pricePerContentUnit">Цена за единицу продукции: </label></td>
+                <td><input type="number" th:field="*{pricePerContentUnit}" id="pricePerContentUnit"
+                           placeholder="Цена за ед."></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Обновить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>

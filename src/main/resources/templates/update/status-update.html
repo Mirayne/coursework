@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/update.css}">
+</head>
+<body>
+<div th:insert="header :: menu"></div>
+<div th:insert="auth :: auth"></div>
+<div id="update-form">
+    <h1>Обновить данные</h1>
+    <form action="#" th:action="@{/update/status-update}" th:object="${status}" method="post">
+        <table>
+            <tr>
+                <td><label for="id">ID: </label></td>
+                <td><input type="number" th:field="*{statusId}" placeholder="id" id="id" readonly></td>
+            </tr>
+            <tr>
+                <td><label for="title">Название статуса: </label></td>
+                <td><input type="text" th:field="*{statusName}" id="title" placeholder="Название статуса"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button type="submit">Обновить данные</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:insert="footer :: footer"></div>
+</body>
+</html>
