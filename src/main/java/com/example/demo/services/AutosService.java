@@ -35,9 +35,8 @@ public class AutosService {
         autosRepository.save(autosConverter.toAutos(autosDTO));
     }
 
-    public AutosDTO findById (Integer id) {
+    public AutosDTO findById(Integer id) {
         return autosConverter.toAutosDTO(autosRepository.findById(id).orElseThrow());
     }
-
 
 }

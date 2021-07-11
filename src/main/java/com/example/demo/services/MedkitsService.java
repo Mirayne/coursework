@@ -31,13 +31,6 @@ public class MedkitsService {
                 .collect(Collectors.toList());
     }
 
-    public Set<Integer> getListOfMedkitsNumbers() {
-        return findAll()
-                .stream()
-                .map(MedkitsDTO::getNumberOfMedkit)
-                .collect(Collectors.toSet());
-    }
-
     public MedkitsDTO findById(Integer id) {
         return medkitsConverter.toMedkitsDTO(medkitsRepository.findById(id).orElseThrow());
     }

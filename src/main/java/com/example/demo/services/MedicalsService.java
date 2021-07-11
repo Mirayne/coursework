@@ -30,13 +30,6 @@ public class MedicalsService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getEveryMedicName() {
-        return findAll()
-                .stream()
-                .map(MedicalsDTO::getMedicName)
-                .collect(Collectors.toList());
-    }
-
     public MedicalsDTO findById(Integer id) {
         return medicalsConverter.toMedicalsDTO(medicalsRepository.findById(id).orElseThrow());
     }
@@ -47,9 +40,5 @@ public class MedicalsService {
 
     public void saveMedical(MedicalsDTO medicalsDTO) {
         medicalsRepository.save(medicalsConverter.toMedicals(medicalsDTO));
-    }
-
-    public Map<Integer,String> medicalsAsMap() {
-        return findAll().stream().collect(Collectors.toMap(MedicalsDTO::getMedicId, MedicalsDTO::getMedicName));
     }
 }

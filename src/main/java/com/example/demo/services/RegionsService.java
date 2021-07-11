@@ -30,14 +30,6 @@ public class RegionsService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getRegionsBeginAndEnd() {
-        List<String> list = new ArrayList<>();
-        for (RegionsDTO r : findAll()){
-            list.add(r.getRegionBeginAddress() + " - " + r.getRegionEndAddress());
-        }
-        return list;
-    }
-
     public RegionsDTO findById(Integer id) {
         return regionsConverter.toRegionsDTO(regionsRepository.findById(id).orElseThrow());
     }

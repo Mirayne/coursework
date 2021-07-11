@@ -39,9 +39,6 @@ public class ReportService {
     private CallingsService callingsService;
 
     @Autowired
-    private CallingResultsService callingResultsService;
-
-    @Autowired
     public ReportService(CallingRepository callingRepository, CallingResultsRepository callingResultsRepository,
                          ContentOfKitRepository contentOfKitRepository, CallingsConverter callingsConverter,
                          CallingResultsConverter callingResultsConverter, ContentOfKitConverter contentOfKitConverter,

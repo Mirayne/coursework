@@ -39,15 +39,10 @@ public class MedBrigadeService {
         System.out.println(findById(id));
         MedBrigade medBrigade = medBrigadeConverter.toMedBrigade(findById(id));
         System.out.println(medBrigade.getNumberOfBrigade());
-        //System.out.println(medBrigade.getNumberOfBrigade() + medBrigade.getMedic3().getMedicId());
         medBrigadeRepository.delete(medBrigade);
     }
 
     public void saveMedBrigade(MedBrigadeDTO medBrigadeDTO) {
         medBrigadeRepository.save(medBrigadeConverter.toMedBrigade(medBrigadeDTO));
-    }
-
-    public List<Integer> getNumbersOfBrigadesList() {
-        return findAll().stream().map(MedBrigadeDTO::getId).collect(Collectors.toList());
     }
 }
